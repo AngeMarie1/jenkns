@@ -1,32 +1,21 @@
 pipeline {
     agent any
-
     stages {
-        stage('Checkout SCM') {
+        stage('Build') {
             steps {
-                // Checkout code from your Git repository
-                checkout scm
+                echo "Building the project..."
+                bat 'dir'   // Windows command
             }
         }
-
-        stage('Install Dependencies') {
+        stage('Test') {
             steps {
-                // Install Node.js dependencies
-                bat 'npm install'
+                echo "Running tests..."
             }
         }
-
-        stage('Run Tests') {
+        stage('Deploy') {
             steps {
-                // Run the tests
-                bat 'npm test'
+                echo "Deploying..."
             }
-        }
-    }
-
-    post {
-        always {
-            echo 'Pipeline finished.'
         }
     }
 }
